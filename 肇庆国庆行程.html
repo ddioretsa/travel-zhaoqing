@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🇨🇳肇庆国庆5天旅行手册</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+        }
+        body {
+            background-color: #f7f9fc;
+            padding-bottom: 70px;
+        }
+        /* 顶部封面banner */
+        .banner {
+            height: 260px;
+            background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url("https://img1.baidu.com/it/u=1324038404,3021322003&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=400");
+            background-size: cover;
+            background-position: center;
+            color:#fff;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            justify-content:center;
+            text-align:center;
+            padding:20px;
+        }
+        .banner h1{
+            font-size:32px;
+            margin-bottom:12px;
+        }
+        .countdown{
+            font-size:18px;
+            background:rgba(255,255,255,0.22);
+            padding:6px 16px;
+            border-radius:30px;
+        }
+        .container {
+            max-width:720px;
+            margin:0 auto;
+            padding:24px;
+        }
+        .section {
+            background:#fff;
+            border-radius:16px;
+            padding:20px;
+            margin-bottom:20px;
+            box-shadow:0 2px 10px rgba(0,0,0,0.06);
+            transition:0.3s;
+        }
+        .section:hover{
+            transform: translateY(-3px);
+        }
+        .section h2 {
+            font-size:20px;
+            color:#2c3e50;
+            border-left:5px solid #f39c12;
+            padding-left:12px;
+            margin-bottom:16px;
+            cursor:pointer;
+            user-select:none;
+        }
+        .section h2::after{
+            content:" ▼";
+            font-size:14px;
+            color:#999;
+        }
+        .section.collapsed h2::after{
+            content:" ▶";
+        }
+        .section-content{
+            transition: max-height 0.4s ease;
+            overflow:hidden;
+        }
+        .section.collapsed .section-content{
+            max-height:0 !important;
+        }
+        /* 时间轴每日行程 */
+        .day-item{
+            border-left:3px solid #3498db;
+            padding-left:16px;
+            margin-bottom:18px;
+        }
+        .day-item strong{
+            color:#2980b9;
+            font-size:17px;
+        }
+        .hotel-card {
+            background-color:#fff8e8;
+            padding:14px;
+            border-radius:10px;
+            margin:10px 0;
+        }
+        ul {
+            padding-left: 22px;
+            line-height:1.8;
+            color:#444;
+        }
+        .map-link a{
+            display:inline-block;
+            background:#2980b9;
+            color:#fff;
+            text-decoration:none;
+            padding:8px 16px;
+            border-radius:8px;
+            margin-top:8px;
+            transition: background 0.2s;
+        }
+        .map-link a:hover{
+            background:#1f618d;
+        }
+        .tip{
+            color:#e67e22;
+        }
+        /* 行李勾选 */
+        .check-item{
+            cursor:pointer;
+        }
+        .check-item.checked{
+            color:#999;
+            text-decoration: line-through;
+        }
+        /* 返回顶部 */
+        #backTop{
+            position: fixed;
+            bottom:24px;
+            right:24px;
+            width:44px;
+            height:44px;
+            border-radius:50%;
+            background:#2980b9;
+            color:white;
+            border:none;
+            font-size:18px;
+            display:none;
+            cursor:pointer;
+            box-shadow:0 2px 8px #0003;
+        }
+        #backTop.show{
+            display:block;
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部封面 -->
+    <div class="banner">
+        <h1>🇨🇳肇庆国庆出游手册</h1>
+        <div class="countdown">距离10.1出发：<span id="time"></span></div>
+    </div>
+<div class="container">
+    <div class="section">
+        <h2>🚗 出发路线｜广州黄埔香雪大道西281号 → 肇庆</h2>
+        <div class="section-content">
+            <ul>
+                <li>出发地点：广州黄埔香雪大道西281号</li>
+                <li>自驾常规路程：约110km，不堵车约1h45min；国庆拥堵建议预留3小时</li>
+                <li>推荐路线：香雪大道 → 广龙高速 → 二广高速 → 肇庆</li>
+                <li class="map-link">
+                    景点高德地图链接：
+                    <a href="https://surl.amap.com/i9qrZyG1B8I7" target="_blank">打开高德地图查看</a>
+                </li>
+                <li class="tip">💡提示：10月1号高速极易拥堵，建议早上6:30-7:00出发，避开高峰；备饮用水、零食</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🏨 酒店入住安排</h2>
+        <div class="section-content">
+            <div class="hotel-card">
+                <strong>10.1‑10.3：肇庆喜来登酒店（2晚）</strong>
+                <p>抵达当天办理入住，靠近七星岩，方便前期山水景点游玩</p>
+            </div>
+            <div class="hotel-card">
+                <strong>10.3‑10.6：肇庆全季酒店(敏捷广场店)（3晚）</strong>
+                <p>10.3中午退房搬迁，敏捷广场餐饮购物齐全，出行便利</p>
+            </div>
+            <ul>
+                <li>⚠️国庆房源紧张，提前保存酒店联系电话</li>
+                <li>入住携带全部同行人身份证</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>📅 每日行程规划</h2>
+        <div class="section-content">
+            <div class="day-item">
+                <strong>10.1 Day1｜出发日</strong>
+                <p>黄埔出发 → 抵达肇庆喜来登办理入住，下午简单休整，傍晚散步看肇庆夜景</p>
+            </div>
+            <div class="day-item">
+                <strong>10.2 Day2｜七星岩深度游</strong>
+                <p>七星岩景区深度游玩，湖边徒步、游船</p>
+            </div>
+            <div class="day-item">
+                <strong>10.3 Day3｜换酒店</strong>
+                <p>上午继续游玩景点，中午退房，自驾前往全季敏捷广场店办理入住；晚上逛敏捷广场觅食</p>
+            </div>
+            <div class="day-item">
+                <strong>10.4 Day4｜鼎湖山/古村</strong>
+                <p>鼎湖山或者周边古村游玩</p>
+            </div>
+            <div class="day-item">
+                <strong>10.5 Day5｜采购特产</strong>
+                <p>打卡其他小众景点，采购肇庆特产裹蒸粽</p>
+            </div>
+            <div class="day-item">
+                <strong>10.6 Day6｜返程</strong>
+                <p>休整，返程回广州黄埔</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🍜 肇庆当地美食推荐</h2>
+        <div class="section-content">
+            <ul>
+                <li>✅肇庆裹蒸粽：超大咸香粽子，必买伴手礼</li>
+                <li>✅鼎湖山爆炒坑螺：本地特色夜宵小炒</li>
+                <li>✅文庆鲤：清蒸，肉质清甜鲜嫩</li>
+                <li>✅竹篙粉：薄滑特色河粉，早餐首选</li>
+                <li>✅端州本地糖水：绿豆沙、香芋西米露，饭后甜品</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🎒 行李清单（点击勾选）</h2>
+        <div class="section-content">
+            <ul>
+                <li class="check-item">证件：所有人身份证、驾驶证（自驾）、少量现金</li>
+                <li class="check-item">衣物：国庆肇庆22~30℃，早晚微凉，薄外套；舒适徒步鞋、换洗衣物</li>
+                <li class="check-item">日用品：防晒霜、雨伞（山区阵雨多）、个人洗漱用品</li>
+                <li class="check-item">药品：肠胃药、晕车药、创可贴、驱蚊液、个人常备药</li>
+                <li class="check-item">其他：充电宝、充电线、车载充电器、零食饮用水（堵车备用）</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🚙 沿途可顺路游玩城市/站点</h2>
+        <div class="section-content">
+            <ul>
+                <li>去程：途经佛山三水，可以短暂停留吃河鲜</li>
+                <li>返程可选：可绕道佛山顺德，品尝双皮奶、鱼生再回黄埔</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<button id="backTop">↑</button>
+
+<script>
+// 倒计时
+function countDown(){
+    const target = new Date("2026-10-01 06:30:00").getTime();
+    const now = new Date().getTime();
+    const diff = target - now;
+    if(diff <=0){
+        document.getElementById("time").innerText="旅途开启✨";
+        return;
+    }
+    const d = Math.floor(diff/(1000*60*60*24));
+    const h = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+    const m = Math.floor((diff%(1000*60*60))/(1000*60));
+    document.getElementById("time").innerText = `${d}天${h}时${m}分`;
+}
+countDown();
+setInterval(countDown,1000*60);
+
+// 折叠展开板块
+document.querySelectorAll('.section h2').forEach(h2=>{
+    h2.addEventListener('click',()=>{
+        const section = h2.parentElement;
+        section.classList.toggle('collapsed');
+    })
+})
+
+// 行李勾选切换
+document.querySelectorAll('.check-item').forEach(item=>{
+    item.addEventListener('click',()=>{
+        item.classList.toggle('checked');
+    })
+})
+
+// 返回顶部
+const backTopBtn = document.getElementById('backTop');
+window.addEventListener('scroll',()=>{
+    if(window.scrollY>120){
+        backTopBtn.classList.add('show');
+    }else{
+        backTopBtn.classList.remove('show');
+    }
+})
+backTopBtn.onclick = ()=>{
+    window.scrollTo({top:0, behavior:'smooth'})
+}
+</script>
+</body>
+</html>
