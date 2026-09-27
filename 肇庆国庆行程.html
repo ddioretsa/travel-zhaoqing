@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>肇庆国庆自驾行程手册 | 2026.10.1-10.6</title>
+    <style>
+        :root {
+            --bg-color: #f8f5ec; /*米白色底色*/
+            --card-bg: #ffffff;
+            --text-main: #2c2c2c;
+            --text-secondary: #555555;
+            --accent: #3474b5;
+            --warning: #c83b3b;
+            --border: #e2ddd0;
+        }
+        [data-theme="dark"] {
+            --bg-color: #1a202c;
+            --card-bg: #272d38;
+            --text-main: #f0f0f0;
+            --text-secondary: #b8b8b8;
+            --accent: #60a5fa;
+            --warning: #f87171;
+            --border: #3a414e;
+        }
+        * {
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            padding:16px;
+            line-height:1.6;
+            transition: all 0.3s;
+        }
+        .theme-btn{
+            float:right;
+            padding:8px 14px;
+            border-radius:999px;
+            border:none;
+            background:var(--accent);
+            color:white;
+            font-size:14px;
+            cursor:pointer;
+        }
+        .container{
+            max-width:720px;
+            margin:0 auto;
+        }
+        .card{
+            background:var(--card-bg);
+            border-radius:16px;
+            padding:20px;
+            margin-bottom:20px;
+            border:1px solid var(--border);
+        }
+        .countdown-wrap{
+            text-align:center;
+        }
+        .countdown-title{
+            font-size:18px;
+            margin-bottom:10px;
+            color:var(--text-secondary);
+        }
+        .countdown-num{
+            font-size:36px; /*缩小倒计时字体*/
+            font-weight:600;
+            color:var(--accent);
+        }
+        .map-svg{
+            width:100%;
+            max-height:320px; /*限制SVG地图最大高度，不会超长*/
+        }
+        .map-caption{
+            margin-top:8px;
+            font-size:14px;
+            color:var(--text-secondary);
+        }
+        h2{
+            font-size:22px;
+            margin-bottom:16px;
+            border-left:4px solid var(--accent);
+            padding-left:12px;
+        }
+        .day-title{
+            font-size:20px;
+            font-weight:600;
+            margin:18px 0 12px;
+        }
+        .timeline-item{
+            margin-bottom:12px;
+            font-size:16px;
+        }
+        .warn-text{
+            color:var(--warning);
+            font-weight:500;
+        }
+        .route-card{
+            background:rgba(52,116,181,0.06);
+            border-radius:12px;
+            padding:16px;
+            margin:14px 0;
+        }
+        .route-preview-img{
+            width:100%;
+            max-height:260px; /*高德预览图限制高度*/
+            object-fit:contain;
+            border-radius:10px;
+            margin:10px 0;
+        }
+        a{
+            color:var(--accent);
+        }
+        .divider{
+            height:1px;
+            background:var(--border);
+            margin:24px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <button class="theme-btn" onclick="toggleTheme()">切换昼夜模式</button>
+
+    <!-- 倒计时卡片 -->
+    <div class="card countdown-wrap">
+        <div class="countdown-title">下一个行程事件<br>10月1日 07:00 | 广州黄埔出发自驾前往肇庆喜来登酒店</div>
+        <div class="countdown-num" id="count">计算中</div>
+    </div>
+
+    <!-- 总路线 -->
+    <div class="card">
+        <h2>行程总路线</h2>
+        <!-- 删除手绘SVG文字，svg高度限制 -->
+        <svg class="map-svg" viewBox="0 0 720 400">
+            <!-- 你的原有SVG地图内容保留 -->
+            <defs>
+                <style>
+                    .lineD1{stroke:#4287c9;stroke-width:7;fill:none;stroke-linecap:round}
+                    .lineD3{stroke:#ff9833;stroke-width:7;fill:none;stroke-linecap:round}
+                    .lineDetour{stroke:#47b881;stroke-width:5;fill:none;stroke-linecap:round;stroke-dasharray:10 6}
+                    .dot{r:16}
+                    .spot{r:10}
+                </style>
+            </defs>
+            <!-- 路线 -->
+            <path class="lineD1" d="M 80,280 C 220,200 380,170 540,160"/>
+            <path class="lineD3" d="M 540,160 L 680,210"/>
+            <path class="lineDetour" d="M80,280 C240,340 480,330 680,260"/>
+            <!-- 点位 -->
+            <circle cx="80" cy="280" fill="#3474b5" class="dot"/>
+            <text x="110" y="286" font-size="22">🏠广州黄埔（起点）</text>
+
+            <circle cx="540" cy="160" fill="#ff9833" class="dot"/>
+            <text x="560" y="150" font-size="20">🏨肇庆喜来登</text>
+
+            <circle cx="620" cy="110" fill="#d83838" class="spot"/>
+            <text x="640" y="116" font-size="18">💧鼎湖山</text>
+
+            <circle cx="460" cy="210" fill="#d83838" class="spot"/>
+            <text x="480" y="216" font-size="18">⛰️七星岩</text>
+            <!--图例-->
+            <line x1="60" y1="360" x2="160" y2="360" stroke="#4287c9" stroke-width="7"/>
+            <text x="170" y="366" font-size="16">D1 广州→喜来登</text>
+            <line x1="360" y1="360" x2="460" y2="360" stroke="#ff9833" stroke-width="7"/>
+            <text x="470" y="366" font-size="16">D3 喜来登→全季</text>
+        </svg>
+        <div class="map-caption">总路线概览：<a href="https://surl.amap.com/i9qrZyG1B8I7" target="_blank">高德导航</a></div>
+    </div>
+
+
+    <div class="card">
+        <h2>每日行程安排</h2>
+
+        <div class="day-title">Day1｜10月1日｜广州黄埔 → 肇庆喜来登</div>
+        <div class="timeline-item">06:30-07:00 广州黄埔香雪大道西281号出发，自驾前往喜来登</div>
+        <div class="timeline-item warn-text">⚠ 国庆高速拥堵，预估车程约3h，车上备好零食饮用水</div>
+        <div class="timeline-item">10:00 抵达，办理入住，下午休整熟悉周边</div>
+        <div class="timeline-item">晚餐推荐：昌泰私房菜馆（鼎湖区，距离喜来登很近）</div>
+
+        <div class="route-card">
+            <div style="font-weight:600; margin-bottom:8px;">查看当日自驾路线卡片</div>
+            <div>路线：广州黄埔香雪大道西281号 → 肇庆喜来登酒店</div>
+            <div>预估里程：175km｜预估车程：3小时</div>
+            <div>（国庆拥堵预留更多时间）</div>
+            <img class="route-preview-img" alt="高德路线预览" src="https://p3-flow-image-sign.byteimg.com/tos-cn-i-a9rns2rl98/001c0040823e4038922440d214004411~tplv-a9rns2rl98-image.image">
+            <div><a href="https://surl.amap.com/i9qrZyG1B8I7" target="_blank">点击打开高德APP导航</a></div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="day-title">Day2｜10月2日｜七星岩全天深度游玩</div>
+        <div class="timeline-item warn-text">⚠ 七星岩需单独购票，公众号提前预约，游船尽量上午乘坐，早到才有车位</div>
+        <div class="timeline-item">08:30 出发前往七星岩景区</div>
+        <div class="timeline-item">全天游览，午餐景区附近简餐</div>
+        <div class="timeline-item">傍晚返回喜来登酒店休息</div>
+
+        <div class="divider"></div>
+
+        <div class="day-title">Day3｜10月3日｜鼎湖山游玩，换酒店至肇庆全季敏捷广场店</div>
+        <div class="timeline-item">上午：鼎湖山游览</div>
+        <div class="timeline-item">中午退房，行李装车，自驾迁移酒店</div>
+        <div class="timeline-item">下午办理全季敏捷广场店入住（10.3–10.6入住）</div>
+
+        <div class="divider"></div>
+
+        <div class="day-title">Day4｜10月4日｜肇庆城区老城+美食探店</div>
+        <div class="timeline-item">古城、宋城墙、岩前村散步，品尝本地特色餐饮</div>
+
+        <div class="day-title">Day5｜10月5日｜周边短途景点</div>
+        <div class="timeline-item">按需选择，可休闲躺平酒店休息</div>
+
+        <div class="day-title">Day6｜10月6日｜返程广州黄埔</div>
+        <div class="timeline-item warn-text">⚠ 返程高峰，建议早出发避开高速堵车</div>
+    </div>
+
+    <div class="card">
+        <h2>行李清单</h2>
+        <div class="timeline-item">证件：身份证、驾驶证</div>
+        <div class="timeline-item">衣物：换洗衣物、薄外套、舒适徒步鞋</div>
+        <div class="timeline-item">出行：车载充电、雨伞、防晒霜、常用药品</div>
+        <div class="timeline-item">其他：零食、饮用水、垃圾袋</div>
+    </div>
+
+    <div class="card">
+        <h2>美食推荐</h2>
+        <div class="timeline-item">鼎湖山坑螺、裹蒸粽、肇实、剑花汤、清蒸西江鲩鱼</div>
+        <div class="timeline-item">推荐门店：昌泰私房菜馆、岩前村农家菜、敏捷广场粤菜馆</div>
+    </div>
+</div>
+
+<script>
+// 倒计时
+function updateCount(){
+    const target = new Date("2026-10-01T07:00:00+08:00").getTime();
+    const now = Date.now();
+    const diff = target - now;
+    if(diff <=0){
+        document.getElementById("count").innerText="行程已开始";
+        return;
+    }
+    const d = Math.floor(diff / (1000*60*60*24));
+    const h = Math.floor((diff % (1000*60*60*24))/(1000*60*60));
+    const m = Math.floor((diff % (1000*60*60))/(1000*60));
+    const s = Math.floor((diff % (1000*60))/1000);
+    document.getElementById("count").innerText = `${d}天 ${h}时 ${m}分 ${s}秒`;
+}
+updateCount();
+setInterval(updateCount,1000);
+
+//昼夜切换
+function toggleTheme(){
+    const el = document.body;
+    if(el.getAttribute("data-theme")==="dark"){
+        el.removeAttribute("data-theme");
+    }else{
+        el.setAttribute("data-theme","dark");
+    }
+}
+</script>
+</body>
+</html>
