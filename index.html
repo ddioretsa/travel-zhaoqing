@@ -3,456 +3,345 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>肇庆国庆自驾行程手册｜2026.10.01-10.06</title>
+    <title>国庆肇庆自驾行程手册</title>
     <style>
-        :root {
-            --bg: #f7f9fc;
-            --card: #ffffff;
-            --text: #222222;
-            --text-light: #555;
-            --primary: #277da1;
-            --warn: #e63946;
-            --border: #e2e8f0;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Microsoft Yahei", sans-serif;
         }
-        [data-theme="dark"] {
-            --bg: #121826;
-            --card: #1e293b;
-            --text: #f1f5f9;
-            --text-light: #b4c2d4;
-            --primary: #48cae4;
-            --warn: #ff6b6b;
-            --border: #334155;
-        }
-        * {box-sizing: border-box;margin:0;padding:0;}
         body {
-            font-family: system-ui, -apple-system, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            padding:16px;
-            line-height:1.6;
-            transition: background 0.4s, color 0.4s;
+            background-color: #f8f5ee;
+            color: #333;
+            padding: 20px;
+            max-width: 920px;
+            margin: 0 auto;
+            line-height: 1.6;
         }
-        .theme-toggle{
-            position:fixed;top:16px;right:16px;z-index:99;
-            padding:8px 12px;border-radius:99px;border:none;background:var(--primary);color:#fff;cursor:pointer;
+        .header-card {
+            background: #fff;
+            padding: 24px;
+            border-radius: 14px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+            margin-bottom: 24px;
         }
-        .card{
-            background:var(--card);
-            border-radius:16px;
-            padding:20px;margin-bottom:16px;
-            border:1px solid var(--border);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        .countdown-wrap {
+            margin-top:12px;
         }
-        .countdown-card{
+        .countdown {
+            font-size: 28px;
+            font-weight: 600;
+            color:#2c5c70;
+        }
+        /* 天气模块样式 */
+        .weather-wrap {
+            margin-top: 18px;
+            padding-top:16px;
+            border-top: 1px solid #eee;
+        }
+        .weather-title {
+            font-weight: 600;
+            margin-bottom:10px;
+            color:#444;
+        }
+        .weather-grid{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap:10px;
+        }
+        .weather-day{
+            background:#f8f5ee;
+            padding:10px;
+            border-radius:8px;
             text-align:center;
-            border:2px solid var(--primary);
+            font-size:14px;
         }
-        .countdown-title{
-            font-size:16px;color:var(--text-light);margin-bottom:8px;
+        h2 {
+            font-size:20px;
+            margin:28px 0 14px;
+            color:#222;
+            border-left:4px solid #88a8b8;
+            padding-left:10px;
         }
-        .countdown-event{
-            font-size:18px;font-weight:bold;margin-bottom:12px;
-        }
-        .countdown-num{
-            font-size:36px;font-weight:bold;color:var(--primary);letter-spacing:2px;
-        }
-        .warn-text{color:var(--warn);font-weight:bold;}
-        h2{font-size:20px;margin:12px 0 8px;border-left:4px solid var(--primary);padding-left:10px;}
-        h3{font-size:17px;margin:10px 0 6px;}
-        .day-item{margin-bottom:12px;border-bottom:1px dashed var(--border);padding-bottom:12px;}
-        .day-item:last-child{border:none;}
-        .food-card{
-            padding:12px;border:1px solid var(--border);border-radius:12px;margin:8px 0;
-        }
-        .food-name{font-weight:bold;font-size:16px;}
-        .food-meta{color:var(--text-light);font-size:14px;}
-        a{color:var(--primary);word-break:break-all;}
-        ul{padding-left:20px;margin:8px 0;}
-        .svg-box{width:100%;overflow:auto;}
-        .route-card{
-            margin-top:10px;
-            border:1px solid var(--border);
+        .card {
+            background:#fff;
             border-radius:12px;
+            padding:20px;
+            margin-bottom:16px;
+            box-shadow:0 1px 6px rgba(0,0,0,0.05);
+        }
+        .day-title{
+            font-size:18px;
+            font-weight:600;
+            margin-bottom:10px;
+            color:#2c5c70;
+        }
+        .amap-card{
+            margin-top:12px;
+            border:1px solid #e9e9e9;
+            border-radius:10px;
             overflow:hidden;
         }
-        .route-toggle{
+        .amap-card iframe{
             width:100%;
-            background:var(--bg);
-            border:none;
-            padding:10px 14px;
-            text-align:left;
-            font-size:15px;
-            color:var(--text);
-            cursor:pointer;
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-        }
-        .route-content{
-            padding:12px 14px;
-            border-top:1px solid var(--border);
-            display:none;
-        }
-        .route-content.show{
+            height:320px;
             display:block;
         }
-        .route-iframe{
-            width:100%;
-            height:220px;
-            border-radius:8px;
-            border:1px solid var(--border);
-            margin:8px 0;
+        .amap-title{
+            padding:8px 12px;
+            background:#f4f7f9;
+            font-size:14px;
+        }
+        .todo-list{
+            margin-top:10px;
+        }
+        .todo-item{
+            display:flex;
+            gap:10px;
+            padding:6px 0;
+            align-items:center;
+        }
+        input[type="checkbox"]{
+            width:18px;
+            height:18px;
+            cursor:pointer;
+        }
+        .checked-text{
+            text-decoration: line-through;
+            color:#888;
+        }
+        .food-item{
+            padding:10px 0;
+            border-bottom:1px #f1f1f1 dashed;
+        }
+        .food-item:last-child{
+            border:none;
+        }
+        .info-small{
+            font-size:14px;
+            color:#555;
+        }
+        .tip{
+            background:#f4f7f9;
+            padding:8px 10px;
+            border-radius:6px;
+            margin-top:8px;
+            font-size:14px;
         }
     </style>
 </head>
 <body>
-    <button class="theme-toggle" onclick="toggleTheme()">🌓 切换昼夜模式</button>
-
-    <!-- 顶部：此刻关注 + 动态倒计时 -->
-    <div class="card countdown-card">
-        <div class="countdown-title">📌 此刻关注 · 下一个行程事件</div>
-        <div class="countdown-event" id="eventName"></div>
-        <div class="countdown-num" id="timer"></div>
-    </div>
-
-    <!-- SVG路线总览图（新版地图风格SVG） -->
-    <div class="card">
-        <h2>🗺️ 行程总路线（手绘SVG）</h2>
-        <div class="svg-box">
-<svg width="620" height="320" viewBox="0 0 620 320">
-  <!-- 背景浅底色模拟地图 -->
-  <rect width="620" height="320" fill="#f6f8fa" rx="8"/>
-  <!-- 道路底色：主路 -->
-  <path d="M70,160 C140,140 190,110 250,90" stroke="#c9d6e2" stroke-width="12" fill="none" stroke-linecap="round"/>
-  <path d="M250,90 C300,130 360,180 430,200" stroke="#c9d6e2" stroke-width="12" fill="none" stroke-linecap="round"/>
-  <path d="M430,200 C300,240 180,220 70,160" stroke="#c9d6e2" stroke-width="12" fill="none" stroke-linecap="round"/>
-  <!-- 自驾路线（彩色路线覆盖在道路上） -->
-  <path d="M70,160 C140,140 190,110 250,90" stroke="#277da1" stroke-width="4" fill="none" stroke-linecap="round"/>
-  <path d="M250,90 C300,130 360,180 430,200" stroke="#f77f00" stroke-width="4" fill="none" stroke-linecap="round"/>
-  <path d="M430,200 C300,240 180,220 70,160" stroke="#43aa8b" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="8 4"/>
-
-  <!-- 地点标记圆点 -->
-  <circle cx="70" cy="160" r="9" fill="#277da1"/>
-  <circle cx="250" cy="90" r="9" fill="#f77f00"/>
-  <circle cx="430" cy="200" r="9" fill="#43aa8b"/>
-
-  <!-- 景点红色小图标 -->
-  <circle cx="230" cy="120" r="6" fill="#e63946"/>
-  <circle cx="280" cy="60" r="6" fill="#e63946"/>
-  <circle cx="360" cy="170" r="6" fill="#e63946"/>
-
-  <!-- 文字标注 -->
-  <text x="85" y="156" font-size="14" font-weight="bold" fill="#111">🏠广州黄埔（起点）</text>
-  <text x="265" y="86" font-size="14" font-weight="bold" fill="#111">🏨肇庆喜来登</text>
-  <text x="445" y="196" font-size="14" font-weight="bold" fill="#111">🏨全季敏捷广场</text>
-
-  <text x="238" y="124" font-size="12" fill="#222">⛰️七星岩</text>
-  <text x="288" y="64" font-size="12" fill="#222">💧鼎湖山</text>
-  <text x="368" y="174" font-size="12" fill="#222">🦢星湖湿地</text>
-
-  <!-- 图例 -->
-  <rect x="20" y="270" width="18" height="4" fill="#277da1"/>
-  <text x="45" y="274" font-size="11">D1 广州→喜来登</text>
-
-  <rect x="180" y="270" width="18" height="4" fill="#f77f00"/>
-  <text x="205" y="274" font-size="11">D3 喜来登→全季</text>
-
-  <rect x="340" y="270" width="18" height="4" fill="#43aa8b" stroke-dasharray="8 4"/>
-  <text x="365" y="274" font-size="11">D6 返程回广州</text>
-</svg>
+    <div class="header-card">
+        <h1>国庆肇庆自驾行程手册</h1>
+        <div class="countdown-wrap">
+            <div>距离出发：</div>
+            <div class="countdown" id="countdown"></div>
         </div>
-        <p style="font-size:14px;color:var(--text-light);margin-top:8px;">
-            总路线概览：<a href="https://surl.amap.com/ksmStiSi591" target="_blank">高德导航</a>
-        </p>
-    </div>
-
-    <!--酒店&门票信息-->
-    <div class="card">
-        <h2>🏨 酒店、车辆与门票信息</h2>
-        <h3>肇庆喜来登酒店｜鼎湖区永利大道1号</h3>
-        <p>入住：10.01｜退房：10.03｜2晚<br>靠近七星岩、鼎湖山，前两晚住宿</p>
-        <h3>全季酒店(敏捷广场店)｜端州区信安路3号敏捷广场六期3栋</h3>
-        <p>入住：10.03｜退房：10.06｜2晚<br>楼下大型商圈，餐饮购物方便</p>
-        <hr style="margin:10px 0;border-color:var(--border)">
-        <h3>🚗 出行车辆：自备私家车</h3>
-        <h3>🎫 星湖国家湿地公园VIP研学卡（3张）</h3>
-        <p>✅权益：有效期1年，自激活起，无限次游览星湖湿地（仙女湖+丹顶鹤生态园）<br>⚠️限制：仅限本人使用，不可转让；<span class="warn-text">不含七星岩大门票</span></p>
-        <p>七星岩/鼎湖山：需要单独购票，公众号提前预约，国庆限流，停车场紧张</p>
-    </div>
-
-    <!--逐日行程-->
-    <div class="card">
-        <h2>📅 每日行程安排</h2>
-        <div class="day-item">
-            <h3>Day1｜10月1日｜广州黄埔 → 肇庆喜来登</h3>
-            <p>🕒06:30-07:00 广州黄埔香雪大道西281号出发，自驾前往喜来登<br>
-            ⚠️<span class="warn-text">国庆高速拥堵，预估车程约3h，车上备好零食饮用水</span><br>
-            🕒10:00 抵达，办理入住，下午休整熟悉周边<br>
-            🥘晚餐推荐：昌泰私房菜馆（鼎湖区，距离喜来登很近）
-            </p>
-            <!-- 当日高德路线卡片 -->
-            <div class="route-card">
-                <button class="route-toggle" onclick="toggleRoute('route-day1')">🗺️查看当日自驾路线卡片 <span>▼</span></button>
-                <div class="route-content" id="route-day1">
-                    <p><strong>路线：广州黄埔香雪大道西281号 → 肇庆喜来登酒店</strong></p>
-                    <p>预估里程：175km｜预估车程：3小时（国庆拥堵预留更多时间）</p>
-                    <iframe class="route-iframe" src="https://surl.amap.com/ksmStiSi591"></iframe>
-                    <p>🔗<a href="https://surl.amap.com/ksmStiSi591" target="_blank">点击打开高德APP导航</a></p>
+        <!-- 新增天气卡片，和倒计时同一区域 -->
+        <div class="weather-wrap">
+            <div class="weather-title">肇庆 · 出行天气预报（可手动更新）</div>
+            <div class="weather-grid">
+                <div class="weather-day">
+                    <div>10.1</div>
+                    <div>晴 / 多云</div>
+                    <div>24~32℃</div>
+                </div>
+                <div class="weather-day">
+                    <div>10.2</div>
+                    <div>多云</div>
+                    <div>23~31℃</div>
+                </div>
+                <div class="weather-day">
+                    <div>10.3</div>
+                    <div>多云</div>
+                    <div>23~30℃</div>
+                </div>
+                <div class="weather-day">
+                    <div>10.4</div>
+                    <div>局部小雨</div>
+                    <div>22~29℃</div>
+                </div>
+                <div class="weather-day">
+                    <div>10.5</div>
+                    <div>多云</div>
+                    <div>23~30℃</div>
+                </div>
+                <div class="weather-day">
+                    <div>10.6</div>
+                    <div>晴</div>
+                    <div>24~31℃</div>
                 </div>
             </div>
         </div>
-        <div class="day-item">
-            <h3>Day2｜10月2日｜七星岩全天深度游玩</h3>
-            <p>⚠️<span class="warn-text">七星岩需单独购票，公众号提前预约，游船尽量上午乘坐，早到才有车位</span><br>
-            🕒07:30 早餐；🕒08:00入园<br>
-            ✅必打卡：天柱岩、水月宫、龙岩洞、十里堤、石室岩<br>
-            午餐可选景区简餐；傍晚返回喜来登<br>
-            🥘晚餐推荐：卖鱼仔(蓝塘南路店)，河鲜小炒
-            </p>
-            <div class="route-card">
-                <button class="route-toggle" onclick="toggleRoute('route-day2')">🗺️查看当日自驾路线卡片 <span>▼</span></button>
-                <div class="route-content" id="route-day2">
-                    <p><strong>路线：肇庆喜来登酒店 → 七星岩景区</strong></p>
-                    <p>预估里程：12km｜预估车程：22分钟</p>
-                    <iframe class="route-iframe" src="https://surl.amap.com/i9qrZyG1B8I7"></iframe>
-                    <p>🔗<a href="https://surl.amap.com/i9qrZyG1B8I7" target="_blank">点击打开高德APP导航</a></p>
-                </div>
-            </div>
+        <div class="info-small" style="margin-top:16px;">出发地：广州黄埔香雪大道西281号｜全程自驾｜星湖景区年卡×3</div>
+    </div>
+
+    <h2>住宿总览</h2>
+    <div class="card">
+        <div>10.1–10.3｜肇庆喜来登酒店（鼎湖新区，两晚）</div>
+        <div class="info-small">周边：砚洲岛、鼎湖山，车程10-15分钟，酒店自带大草坪，环境安静</div>
+        <div style="margin-top:10px;">10.3–10.6｜肇庆全季敏捷广场店（端州敏捷城，三晚）</div>
+        <div class="info-small">楼下敏捷广场商圈，餐饮便利店齐全，去七星岩、宋城墙车程10分钟</div>
+        <div style="margin-top:10px;">✅ 星湖景区年卡已备好，3张，鼎湖山/七星岩/湿地公园免门票</div>
+    </div>
+
+    <h2>逐日行程</h2>
+    <!-- Day1 10.1 -->
+    <div class="card">
+        <div class="day-title">Day1｜10月1日 广州 → 肇庆喜来登酒店</div>
+        <p>上午早出发避开国庆拥堵，自驾前往肇庆喜来登办理入住。下午轻松闲逛砚洲岛，可开车上轮渡环岛，看古村落、大榕树。傍晚前往高要吃西江河鲜。</p>
+        <div class="tip">游玩贴士：砚洲岛轮渡可连车带人，国庆尽量16点前上岛；岛上人少，拍照很出片。</div>
+        <div class="amap-card">
+            <div class="amap-title">路线：家 → 肇庆喜来登酒店</div>
+            <iframe src="https://surl.amap.com/ksmStiSi591" frameborder="0"></iframe>
         </div>
-        <div class="day-item">
-            <h3>Day3｜10月3日｜星湖湿地公园（VIP卡入园）+ 换酒店</h3>
-            <p>🕒07:30早餐；🕒08:30自驾前往星湖湿地仙女湖（凭VIP卡入园）<br>
-            ✅必打卡：科普宣教中心、观佛岛卧佛、金沙滩、禾花仙女；乘船登鸟岛/火烈鸟/丹顶鹤岛；<span class="warn-text">10:00丹顶鹤放飞表演，大雨会取消</span><br>
-            🕒12:00午餐：竹缘轩桑拿冬瓜盅（景区对面，免费停车）<br>
-            🕒13:30喜来登退房，自驾前往全季敏捷广场店<br>
-            🕒15:00办理入住，下午休整采购零食<br>
-            🥘晚餐推荐：慶有如（端州粤菜，家庭聚餐优选）
-            </p>
-            <div class="route-card">
-                <button class="route-toggle" onclick="toggleRoute('route-day3')">🗺️查看当日自驾路线卡片 <span>▼</span></button>
-                <div class="route-content" id="route-day3">
-                    <p><strong>路线：肇庆喜来登酒店 → 星湖湿地仙女湖 → 全季敏捷广场店</strong></p>
-                    <p>预估总里程：26km｜预估总车程：50分钟</p>
-                    <iframe class="route-iframe" src="https://surl.amap.com/kvY2rGKD2w7"></iframe>
-                    <p>🔗<a href="https://surl.amap.com/kvY2rGKD2w7" target="_blank">点击打开高德APP导航</a></p>
-                </div>
-            </div>
-        </div>
-        <div class="day-item">
-            <h3>Day4｜10月4日｜鼎湖山景区</h3>
-            <p>⚠️<span class="warn-text">公众号提前预约门票；上山路段上午极易堵车，山区低3~5℃，备薄外套</span><br>
-            🕒07:30早餐：龙俊德庆竹篙粉（敏捷城，离酒店很近）<br>
-            🕒08:00自驾前往鼎湖山<br>
-            ✅必打卡：庆云寺、飞水潭瀑布、宝鼎园、原始森林栈道<br>
-            午餐：鼎湖山附近农家菜；傍晚返回敏捷广场<br>
-            🥘晚餐备选：利兴河鲜楼(江口店)
-            </p>
-            <div class="route-card">
-                <button class="route-toggle" onclick="toggleRoute('route-day4')">🗺️查看当日自驾路线卡片 <span>▼</span></button>
-                <div class="route-content" id="route-day4">
-                    <p><strong>路线：全季敏捷广场店 → 鼎湖山景区</strong></p>
-                    <p>预估里程：22km｜预估车程：35分钟</p>
-                    <iframe class="route-iframe" src="https://surl.amap.com/i9qrZyG1B8I7"></iframe>
-                    <p>🔗<a href="https://surl.amap.com/i9qrZyG1B8I7" target="_blank">点击打开高德APP导航</a></p>
-                </div>
-            </div>
-        </div>
-        <div class="day-item">
-            <h3>Day5｜10月5日｜休闲漫游+特产采购</h3>
-            <p>🕒早餐：同乐德庆竹篙粉（本地人老店）<br>
-            白天二选一：A.二刷仙女湖湿地，看15:00丹顶鹤放飞，拍湖景日落；B.小众古村闲逛，避开人流，采购裹蒸粽特产<br>
-            🥘午餐：何大厨酒楼，河鲜聚餐，车位充足<br>
-            晚上敏捷广场逛街夜宵，可选石牌里糯米鸡私房菜
-            </p>
-            <div class="route-card">
-                <button class="route-toggle" onclick="toggleRoute('route-day5')">🗺️查看当日自驾路线卡片 <span>▼</span></button>
-                <div class="route-content" id="route-day5">
-                    <p><strong>路线：全季敏捷广场店 → 星湖湿地仙女湖</strong></p>
-                    <p>预估里程：8km｜预估车程：18分钟</p>
-                    <iframe class="route-iframe" src="https://surl.amap.com/i9qrZyG1B8I7"></iframe>
-                    <p>🔗<a href="https://surl.amap.com/i9qrZyG1B8I7" target="_blank">点击打开高德APP导航</a></p>
-                </div>
-            </div>
-        </div>
-        <div class="day-item">
-            <h3>Day6｜10月6日｜返程回广州黄埔</h3>
-            <p>⚠️<span class="warn-text">返程高峰，尽量早出发，预留堵车时间</span><br>
-            🕒07:30收拾行李退房；🕒08:00自驾返程广州黄埔<br>
-            可选绕道佛山顺德，顺路打卡双皮奶
-            </p>
-            <div class="route-card">
-                <button class="route-toggle" onclick="toggleRoute('route-day6')">🗺️查看当日自驾路线卡片 <span>▼</span></button>
-                <div class="route-content" id="route-day6">
-                    <p><strong>路线：全季敏捷广场店 → 返回广州黄埔香雪大道西281号</strong></p>
-                    <p>预估里程：168km｜预估车程：3小时（返程高峰预留更多时间）</p>
-                    <iframe class="route-iframe" src="https://surl.amap.com/kuXtl0qJaCa"></iframe>
-                    <p>🔗<a href="https://surl.amap.com/kuXtl0qJaCa" target="_blank">点击打开高德APP导航</a></p>
-                </div>
-            </div>
+        <div style="margin-top:12px;">
+            <p style="font-weight:500;">推荐晚餐：卖鱼仔(蓝塘南路店)</p>
+            <p class="info-small">评分4.3｜人均¥81｜地道粤菜，本地人常去。推荐：豉油鸡、清蒸河鱼、炒时蔬。门口有停车位，离喜来登20分钟车程。</p>
         </div>
     </div>
 
-    <!--餐厅卡片合集-->
+    <!-- Day2 10.2 -->
     <div class="card">
-        <h2>🍽️ 餐厅推荐卡片</h2>
-        <h3>正餐</h3>
-        <div class="food-card">
-            <div class="food-name">卖鱼仔(蓝塘南路店)</div>
-            <div class="food-meta">⭐4.3｜¥81/人｜粤菜｜蓝塘南路嘉溢食品设备有限公司旁</div>
-            <p>地道河鲜小炒，烟火气足。<a href="https://m.dianping.com/shopinfo/k1LJh9ZqoN6hT9Ld?msource=Appshare2021&utm_source=shop_share&shoptype=10&shopcategoryid=103&cityid=212&isoversea=0" target="_blank">大众点评链接</a></p>
-        </div>
-        <div class="food-card">
-            <div class="food-name">利兴河鲜楼(江口店)</div>
-            <div class="food-meta">⭐4.5｜¥73/人｜河鲜｜世纪大道旺群士多店西北70米</div>
-            <p>西江河鲜老店，食材新鲜。<a href="https://m.dianping.com/shopinfo/lafQIt879Py4D1T2?msource=Appshare2021&utm_source=shop_share&shoptype=10&shopcategoryid=34243&cityid=1507&isoversea=0" target="_blank">大众点评链接</a></p>
-        </div>
-        <div class="food-card">
-            <div class="food-name">昌泰私房菜馆</div>
-            <div class="food-meta">⭐4.5｜¥66/人｜私房菜｜鼎湖区创业路为民桥北</div>
-            <p>鼎湖本地私房菜，游玩鼎湖山就餐优选。<a href="https://m.dianping.com/shopinfo/G1RfJU36jEPSZ3sP?msource=Appshare2021&utm_source=shop_share&shoptype=10&shopcategoryid=1338&cityid=212&isoversea=0" target="_blank">大众点评链接</a></p>
-        </div>
-        <div class="food-card">
-            <div class="food-name">慶有如</div>
-            <div class="food-meta">⭐4.6｜¥70/人｜粤菜｜前进南路18号</div>
-            <p>端州口碑粤菜，适合家庭聚餐。<a href="https://m.dianping.com/shopinfo/l14L8dHFfddCNZNx?msource=Appshare2021&utm_source=shop_share&shoptype=10&shopcategoryid=103&cityid=212&isoversea=0" target="_blank">大众点评链接</a></p>
-        </div>
-        <div class="food-card">
-            <div class="food-name">何大厨酒楼</div>
-            <div class="food-meta">⭐4.0｜¥63/人｜粤菜河鲜｜星湖大道石牌新村村口西侧</div>
-            <p>车位充足，自驾友好，多人聚餐推荐。</p>
-        </div>
-        <div class="food-card">
-            <div class="food-name">竹缘轩桑拿冬瓜盅</div>
-            <div class="food-meta">⭐4.4｜¥75/人｜农家菜｜仙女湖景区对面</div>
-            <p>可以眺望卧佛湖景，就餐免费停车6小时，逛完湿地首选。</p>
-        </div>
-        <div class="food-card">
-            <div class="food-name">石牌里糯米鸡私房菜</div>
-            <div class="food-meta">⭐4.3｜¥70/人｜私房菜｜仙女湖旁石牌里文创街区</div>
-            <p>特色糯米鸡、茶油鸡，湖边座位氛围感好。</p>
-        </div>
-        <h3>早餐</h3>
-        <div class="food-card">
-            <div class="food-name">龙俊德庆竹篙粉</div>
-            <div class="food-meta">⭐4.1｜¥12/人｜德庆竹篙粉｜端州区信安三路敏捷城二期商铺</div>
-            <p>离全季酒店很近，赶路早餐首选，牛腩/猪杂口味锅气足。</p>
-        </div>
-        <div class="food-card">
-            <div class="food-name">同乐德庆竹篙粉</div>
-            <div class="food-meta">⭐4.3｜¥11/人｜德庆竹篙粉｜柳园南路9号103商铺</div>
-            <p>本地人老店，粉皮爽滑，附赠免费白粥小菜，性价比高。</p>
+        <div class="day-title">Day2｜10月2日 鼎湖山全天（使用景区年卡）</div>
+        <p>上午出发前往鼎湖山，小红书热门吸氧路线：宝鼎园 → 飞水潭（孙中山游泳处，踩水打卡点），坐观光车省力，不用全程爬山。下午返回酒店休整，酒店草坪散步。</p>
+        <div class="tip">游玩贴士：年卡直接刷证入园；建议买观光车往返票，减少步行；带拖鞋，飞水潭可以踩泉水。</div>
+        <div style="margin-top:12px;">
+            <p style="font-weight:500;">推荐晚餐：利兴河鲜楼(江口店)</p>
+            <p class="info-small">评分4.5｜人均¥73｜西江河边河鲜店。推荐：笼仔蒸河虾、蒜蓉黄沙蚬、杂鱼豆腐汤，停车方便，很多游客打卡。</p>
         </div>
     </div>
 
-    <!--待办清单（纯文本，无勾选框）-->
+    <!-- Day3 10.3 -->
     <div class="card">
-        <h2>📋 出行待办清单</h2>
-        <ul>
-            <li>同行人身份证、驾驶证随身携带；车辆行驶证、交强险单据放车上</li>
-            <li>携带3张星湖湿地VIP科普研学畅游卡，出行前确认卡片激活，仅限本人入园</li>
-            <li>提前保存两间酒店前台联系电话，保存到手机离线备忘录</li>
-            <li>出发前全车检查：胎压、机油、雨刮、备胎、玻璃水</li>
-            <li>备好薄外套、徒步鞋、便携雨伞，山区天气多变</li>
-            <li>防晒用品、驱蚊液、肠胃药、晕车药、创可贴、个人常备药品</li>
-            <li>充电宝、车载充电器；车上储备堵车零食与饮用水</li>
-            <li>七星岩、鼎湖山门票，出行前1-2天公众号预约；星湖湿地凭VIP卡入园，不用线上购票</li>
-            <li>热门餐厅国庆建议错峰就餐，部分门店无法提前订位，预留排队时间</li>
-            <li>准备环保袋子，采购裹蒸粽等肇庆特产</li>
-            <li>确认ETC余额充足，减少高速出入口排队</li>
-            <li>仙女湖游船建议提前排队；丹顶鹤放飞遇大雨大风会取消，预留备选游玩方案</li>
-        </ul>
+        <div class="day-title">Day3｜10月3日 喜来登 → 全季敏捷广场店，下午星湖湿地公园</div>
+        <p>上午退房，自驾搬迁到端州敏捷广场全季酒店，存放行李。下午前往星湖湿地公园（年卡可用），打卡火烈鸟岛，看湖面倒影，傍晚日落非常适合拍照。</p>
+        <div class="tip">游玩贴士：湿地公园日落时段是小红书热门机位；结束直接回敏捷广场吃饭，商圈选择多。</div>
+        <div class="amap-card">
+            <div class="amap-title">路线：肇庆喜来登 → 全季敏捷广场店</div>
+            <iframe src="https://surl.amap.com/kvY2rGKD2w7" frameborder="0"></iframe>
+        </div>
+        <div style="margin-top:12px;">
+            <p style="font-weight:500;">推荐晚餐：椰乡谣·椰子鸡（敏捷广场店）</p>
+            <p class="info-small">人均¥95｜就在敏捷广场4楼，离酒店步行3分钟。推荐木瓜花胶椰子鸡，清淡解腻，饭后还能逛商场。</p>
+        </div>
     </div>
 
-    <!--实用贴士-->
+    <!-- Day4 10.4 -->
     <div class="card">
-        <h2>💡 出行实用贴士</h2>
-        <h3>🚙交通贴士</h3>
-        <ul>
-            <li>10.1出发、10.6返程属于高速最高峰，建议早于7点出发，避开拥堵时段</li>
-            <li>肇庆景区道路节假日拥堵严重，尽量早出发；停车场饱和可停外围车位打车入园</li>
-            <li>导航优先高德，山区部分区域信号弱，提前下载肇庆离线地图包</li>
-        </ul>
-        <h3>🍜餐饮贴士</h3>
-        <ul>
-            <li>竹篙粉是肇庆特色早餐，敏捷广场门店离第二间酒店步行可达</li>
-            <li>西江河鲜建议11:30前或13:30之后就餐，避开午市排队高峰</li>
-            <li>裹蒸粽伴手礼，本地市场购买性价比高于景区商店</li>
-        </ul>
-        <h3>🏞️景区贴士</h3>
-        <ul>
-            <li>星湖湿地VIP卡：仅仙女湖片区，不含七星岩大门票；激活起有效期一年，无限次入园，不可转让</li>
-            <li>丹顶鹤放飞：每日10:00、15:00两场，恶劣天气取消，现场可咨询工作人员</li>
-            <li>湿地湖面风大，游船保管好手机相机；观鸟保持安静，不要惊扰鸟类</li>
-            <li>鼎湖山山林温度低3~5℃，带薄外套；台阶多，穿防滑徒步鞋</li>
-            <li>七星岩湖面开阔，游船风大，随身物品做好防水</li>
-            <li>国庆游客量大，保管随身物品；湖边游玩看好同行人员</li>
-        </ul>
+        <div class="day-title">Day4｜10月4日 七星岩全天（景区年卡）+岩前村傍晚散步</div>
+        <p>全天七星岩游玩，小红书推荐北门进，停车方便。打卡水月岩云网红湖面机位，坐船游览溶洞。傍晚步行到岩前村，湖边咖啡馆，看七星岩山景倒影。</p>
+        <div class="tip">游玩贴士：七星岩范围很大，不用全部走完；溶洞游船单独收费，自愿选择；岩前村免费，傍晚氛围感很强。</p>
+        <div style="margin-top:12px;">
+            <p style="font-weight:500;">推荐晚餐：快活林食家（端州店）</p>
+            <p class="info-small">人均¥72｜老牌粤菜馆，本地人常来。招牌手抓骨、豉汁蒸黄骨丁，分量大，距离岩前村10分钟车程。</p>
+        </div>
     </div>
 
-    <!--部署操作说明-->
+    <!-- Day5 10.5 -->
     <div class="card">
-        <h2>📝部署操作步骤（标注电脑必做）</h2>
-        <p><span class="warn-text">全部代码上传、仓库配置、Cloudflare Workers绑定，均必须电脑浏览器操作；手机只能打开预览网页，无法上传代码</span></p>
-        <ol>
-            <li>电脑端登录github.com，新建Public公开仓库，仓库名称自定义，不要勾选README</li>
-            <li>电脑本地，复制全部代码，记事本保存为 <code>index.html</code>，编码选择UTF-8</li>
-            <li>仓库页面点击Add file → Upload files，上传index.html，填写提交信息Commit changes</li>
-            <li>仓库Settings → Pages，分支选择main，根目录/，保存，等待1~3分钟，获得GitHub Pages访问链接，网页可直接打开</li>
-            <li>【可选：Cloudflare Workers自动发布】电脑登录Cloudflare，进入Workers & Pages，连接GitHub仓库，授权绑定；后续本地修改html，push提交到GitHub，Cloudflare会自动重新部署上线。</li>
-        </ol>
+        <div class="day-title">Day5｜10月5日 宋城墙+羚羊峡古栈道，休闲citywalk</div>
+        <p>上午逛肇庆宋城墙，免费古迹，登上披云楼俯瞰老城，适合拍古风照片。下午羚羊峡古栈道徒步，西江峡谷江景，悬崖栈道视野开阔。行程偏松弛，用来休整。</p>
+        <div class="tip">游玩贴士：宋城墙全天免费；羚羊峡栈道雨天路面湿滑，注意防滑；返程回敏捷广场吃晚饭。</div>
+        <div style="margin-top:12px;">
+            <p style="font-weight:500;">推荐晚餐：山野春烤肉（敏捷广场店）</p>
+            <p class="info-small">人均¥88｜商场内烤肉店，离酒店很近。肉质新鲜，适合想吃重口味晚餐，吃完可以买肇庆特产裹蒸粽。</p>
+        </div>
+    </div>
+
+    <!-- Day6 10.6 -->
+    <div class="card">
+        <div class="day-title">Day6｜10月6日 肇庆全季 → 返回广州黄埔</div>
+        <p>上午酒店退房，可以在敏捷广场简单早餐，顺路采购裹蒸粽特产。自驾返程广州，错峰返程，尽量中午前上高速避开回城车流高峰。</p>
+        <div class="amap-card">
+            <div class="amap-title">路线：肇庆全季敏捷广场店 → 广州黄埔</div>
+            <iframe src="https://surl.amap.com/kuXtl0qJaCa" frameborder="0"></iframe>
+        </div>
+        <div style="margin-top:12px;">
+            <p style="font-weight:500;">返程简餐推荐：泰姜私厨（敏捷城店）</p>
+            <p class="info-small">人均¥37｜简餐快餐类，海南鸡饭、冬阴功面，适合退房前快速解决早餐/早午餐。</p>
+        </div>
+    </div>
+
+    <h2>行李&代办清单</h2>
+    <div class="card">
+        <div class="todo-list" id="todoList">
+            <div class="todo-item">
+                <input type="checkbox" data-key="todo1">
+                <span>星湖公园年卡 ×3</span>
+            </div>
+            <div class="todo-item">
+                <input type="checkbox" data-key="todo2">
+                <span>身份证</span>
+            </div>
+            <div class="todo-item">
+                <input type="checkbox" data-key="todo3">
+                <span>驾驶证、车辆行驶证</span>
+            </div>
+            <div class="todo-item">
+                <input type="checkbox" data-key="todo4">
+                <span>车载充电线、玻璃水，出发前检查胎压</span>
+            </div>
+            <div class="todo-item">
+                <input type="checkbox" data-key="todo5">
+                <span>换洗衣物、防滑拖鞋（鼎湖山踩水）</span>
+            </div>
+            <div class="todo-item">
+                <input type="checkbox" data-key="todo6">
+                <span>洗漱用品、防晒、帽子</span>
+            </div>
+            <div class="todo-item">
+                <input type="checkbox" data-key="todo7">
+                <span>常备药品：肠胃药、创可贴、驱蚊液</span>
+            </div>
+            <div class="todo-item">
+                <input type="checkbox" data-key="todo8">
+                <span>充电宝、相机</span>
+            </div>
+            <div class="todo-item">
+                <input type="checkbox" data-key="todo9">
+                <span>购物袋（装裹蒸粽特产）</span>
+            </div>
+        </div>
     </div>
 
 <script>
-// 行程节点队列，自动切换倒计时
-const events = [
-    {name:"10月1日 07:00｜广州黄埔出发自驾前往肇庆喜来登酒店", time:new Date("2026-10-01T07:00:00+08:00")},
-    {name:"10月2日 08:00｜七星岩景区入园", time:new Date("2026-10-02T08:00:00+08:00")},
-    {name:"10月3日 08:30｜星湖国家湿地公园仙女湖入园（VIP研学卡）", time:new Date("2026-10-03T08:30:00+08:00")},
-    {name:"10月4日 08:00｜鼎湖山景区入园", time:new Date("2026-10-04T08:00:00+08:00")},
-    {name:"10月6日 08:00｜自驾返程回广州黄埔", time:new Date("2026-10-06T08:00:00+08:00")}
-];
-
+// 倒计时：出发时间 2026-10-01 07:00:00
+const startDate = new Date("2026-10-01 07:00:00").getTime();
 function updateCountdown(){
-    const now = new Date();
-    let targetEvent = events[0];
-    for(let e of events){
-        if(e.time > now){
-            targetEvent = e;
-            break;
-        }
-    }
-    const diff = targetEvent.time - now;
-    if(diff <=0){
-        document.getElementById("timer").innerText="行程已开始";
-        document.getElementById("eventName").innerText = targetEvent.name;
+    const now = Date.now();
+    const diff = startDate - now;
+    if(diff <= 0){
+        document.getElementById("countdown").innerText = "旅程已开启";
         return;
     }
-    const days = Math.floor(diff / (1000*60*60*24));
-    const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
-    const mins = Math.floor((diff % (1000*60*60)) / (1000*60));
-    const secs = Math.floor((diff % (1000*60)) /1000);
-    document.getElementById("eventName").innerText = targetEvent.name;
-    document.getElementById("timer").innerText = `${days}天 ${hours}时 ${mins}分 ${secs}秒`;
+    const day = Math.floor(diff / (1000*60*60*24));
+    const hour = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+    const min = Math.floor((diff % (1000*60*60)) / (1000*60));
+    const sec = Math.floor((diff % (1000*60)) / 1000);
+    document.getElementById("countdown").innerText = `${day}天 ${hour}时 ${min}分 ${sec}秒`;
 }
-//每秒刷新
 updateCountdown();
 setInterval(updateCountdown,1000);
 
-//昼夜切换
-function toggleTheme(){
-    const html = document.documentElement;
-    if(html.getAttribute("data-theme")==="dark"){
-        html.removeAttribute("data-theme");
-    }else{
-        html.setAttribute("data-theme","dark");
+// 勾选状态本地存储
+const todoInputs = document.querySelectorAll(".todo-item input");
+todoInputs.forEach(input=>{
+    const saved = localStorage.getItem(input.dataset.key);
+    if(saved === "true"){
+        input.checked = true;
+        input.nextElementSibling.classList.add("checked-text");
     }
-}
-
-// 路线卡片折叠展开
-function toggleRoute(id){
-    const content = document.getElementById(id);
-    content.classList.toggle("show");
-}
+    input.addEventListener("change",function(){
+        localStorage.setItem(this.dataset.key, this.checked);
+        if(this.checked){
+            this.nextElementSibling.classList.add("checked-text");
+        }else{
+            this.nextElementSibling.classList.remove("checked-text");
+        }
+    })
+})
 </script>
 </body>
 </html>
